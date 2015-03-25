@@ -1,4 +1,4 @@
-package toalet;
+package simpleBathroom;
 
 import java.util.concurrent.Semaphore;
 

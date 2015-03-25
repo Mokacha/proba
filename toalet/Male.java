@@ -1,41 +1,20 @@
-package toalet;
+package simpleBathroom;
 
-public class Male extends Thread{
+public class Male extends Person{
 	
-	private static int lastID = 0;
-	private int ID = lastID++;
-	private int maxTime = 5;
-	private String state;
-	
-	private void printMe(){
-		System.out.println(this);
-	}
-	
+
 	public Male(){
-		start();
+		super();
+		type = "M";
 	}
 	
-	public void run(){
-		
-		try{
-			
-			state = "pocinje";
-			printMe();
-			
-			//entry protocol
-			
-			sleep((long)(Math.random()*maxTime));
-			
-			//exit protocol
-			state = "zavrsio";
-			printMe();
-			
-		}catch (InterruptedException e){}
-		
+	public void entryProtocol(){
+		//entry protocol method
 	}
 	
-	public String toString(){
-		return ID + "M: " + state;
+	
+	public void exitProtocol(){
+		//entry protocol method
 	}
 	
 }
