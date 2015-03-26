@@ -2,7 +2,7 @@ package simpleBathroom;
 
 public abstract class Person  extends Thread{
 	
-	private static int lastID = 0;
+	private static int lastID = 1;
 	private int ID = lastID++;
 	private int maxTime = 5;
 	private String state;
@@ -21,8 +21,8 @@ public abstract class Person  extends Thread{
 		printMe();
 	}	
 	
-	protected abstract void entryProtocol();
-	protected abstract void exitProtocol();
+	protected abstract void entryProtocol() throws InterruptedException;
+	protected abstract void exitProtocol() throws InterruptedException;
 	
 	public void run(){
 		
@@ -32,8 +32,10 @@ public abstract class Person  extends Thread{
 			
 			//entry protocol
 			
-			changeState("kupa se");
-			sleep((long)(Math.random()*maxTime));
+			changeState("ulazi i kupa se");
+			
+			sleep((long)(Math.random()*maxTime*1000));
+			changeState("okupao se i izlazi");
 			
 			exitProtocol();
 			

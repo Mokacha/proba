@@ -8,9 +8,13 @@ public class Program{
 	//				SHARED DATA				//
 	//////////////////////////////////////////
 	
+	//kapacitet kupatila
+	public static int N = 2;
+	
+	//sinhronizacioni semafori
 	public static Semaphore mutex = new Semaphore(1);		//medjusobno iskljucenje za deljene podatke
-	public static Semaphore groupA = new Semaphore(1);		//uslovna sinhronizacija: Neodgovarajuca grupa za sve osim za decu
-	public static Semaphore groupC = new Semaphore(1);		//uslovna sinhronizacija: Neodgovarajuca grupa za decu
+	public static Semaphore groupA = new Semaphore(0);		//uslovna sinhronizacija: Neodgovarajuca grupa za sve osim za decu
+	public static Semaphore groupC = new Semaphore(0);		//uslovna sinhronizacija: Neodgovarajuca grupa za decu
 	public static Semaphore firstM = new Semaphore(1);
 	public static Semaphore firstF = new Semaphore(1);
 	public static Semaphore firstC = new Semaphore(1);
@@ -45,19 +49,19 @@ public class Program{
 		//pauza izmedju blokova
 		long timeout[] = {15,20};
 		
-		for (int rnd = 1; rnd<rnds; rnd++){
-			System.out.println("============= BLOCK "+rnd+" START  ============");
+		for (int rnd = 0; rnd<rnds; rnd++){
+			System.out.println("============= BLOCK "+(rnd+1)+" START  ============");
 			//kreiraj i startuj osobe
 			for (int i=0; i<round[rnd]; i++){
-				switch ((int)(Math.random()*4)){
+				switch ((int)(Math.random()*2)){
 				case 0:
 					new Male();break;
 				case 1:
 					new Female();break;
 				case 2:
-					new Child();break;
+			//		new Child();break;
 				case 3:
-					new Repairman();
+			//		new Repairman();
 				}
 			}
 			
