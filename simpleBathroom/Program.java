@@ -24,6 +24,8 @@ public class Program{
 	public static Semaphore secondC = new Semaphore(0);
 	public static Semaphore secondR = new Semaphore(0);
 	
+	public static Semaphore parent = new Semaphore(0);
+	
 	
 	//broj Male, Frmale, Child, Repairman osoba koje su u kupatilu, respektivno
 	public static int cntM = 0;
@@ -37,8 +39,8 @@ public class Program{
 	public static int waitC = 0;
 	public static int waitR = 0;
 	
-	//ukoliko dete i roditelj cekaju da udju ciji je red
-	public static boolean childTurn = true;
+	//indikator da roditelj ceka da se dete okupa
+	public static int waitP = 0;
 	
 	public static void main(String[] args){
 		

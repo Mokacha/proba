@@ -54,12 +54,10 @@ public class Female extends Person{
 		//ako ima dece i poslednji sam cekaj
 		
 		//ako jos neko ceka
-		if ((Program.waitC>0 && Program.waitF>0 && Program.childTurn) || (Program.waitC>0 && Program.waitF==0)){
-			Program.secondC.release();
-			Program.childTurn = false;
-		}else if (Program.waitF>0){
+		if (Program.waitF>0){
 			Program.secondF.release();
-			if (Program.childTurn) Program.childTurn = true;
+		}else if (Program.waitC>0) {
+			Program.secondC.release();
 		}
 		
 		//ako je poslednji i niko od njegovih ne ceka pusti drugu grupu ako neko ceka tamo
