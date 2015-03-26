@@ -49,12 +49,13 @@ public class Male extends Person{
 		Program.mutex.acquire();
 		Program.cntM--;
 		changeState("izasao");
+		
 		//ako ima dece i poslednji sam cekaj
 		
 		//ako jos neko ceka
 		if (Program.waitM>0){
 			Program.secondM.release();
-		}else if (Program.waitC>0 && Program.waitM==0){
+		}else if (Program.waitC>0) {
 			Program.secondC.release();
 		}
 		
