@@ -32,7 +32,9 @@ public abstract class Person  extends Thread{
 			
 			//entry protocol
 			
-			changeState("ulazi i kupa se");
+			Program.mutex.acquire();
+			changeState("ulazi i kupa se, u kupatilu (M,F,C,R)("+Program.cntM+","+Program.cntF+","+Program.cntC+","+Program.cntR+")");
+			Program.mutex.release();
 			
 			sleep((long)(Math.random()*maxTime*1000));
 			changeState("okupao se i izlazi");

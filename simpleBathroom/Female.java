@@ -62,8 +62,8 @@ public class Female extends Person{
 			if (Program.childTurn) Program.childTurn = true;
 		}
 		
-		//ako je poslednji
-		if ((Program.cntF == 0)&&(Program.waitM>0||Program.waitR>0)){
+		//ako je poslednji i niko od njegovih ne ceka pusti drugu grupu ako neko ceka tamo
+		if ((Program.cntF == 0)&&(Program.waitF == 0)&&(Program.waitM>0||Program.waitR>0)){
 			Program.groupA.release();
 		}
 		Program.mutex.release();

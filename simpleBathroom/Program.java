@@ -9,7 +9,7 @@ public class Program{
 	//////////////////////////////////////////
 	
 	//kapacitet kupatila
-	public static int N = 2;
+	public static int N = 4;
 	
 	//sinhronizacioni semafori
 	public static Semaphore mutex = new Semaphore(1);		//medjusobno iskljucenje za deljene podatke
@@ -18,9 +18,11 @@ public class Program{
 	public static Semaphore firstM = new Semaphore(1);
 	public static Semaphore firstF = new Semaphore(1);
 	public static Semaphore firstC = new Semaphore(1);
+	public static Semaphore firstR = new Semaphore(1);
 	public static Semaphore secondM = new Semaphore(0);
 	public static Semaphore secondF = new Semaphore(0);
 	public static Semaphore secondC = new Semaphore(0);
+	public static Semaphore secondR = new Semaphore(0);
 	
 	
 	//broj Male, Frmale, Child, Repairman osoba koje su u kupatilu, respektivno
@@ -53,15 +55,15 @@ public class Program{
 			System.out.println("============= BLOCK "+(rnd+1)+" START  ============");
 			//kreiraj i startuj osobe
 			for (int i=0; i<round[rnd]; i++){
-				switch ((int)(Math.random()*2)){
+				switch ((int)(Math.random()*3)){
 				case 0:
 					new Male();break;
 				case 1:
 					new Female();break;
-				case 2:
+			//	case 2:
 			//		new Child();break;
-				case 3:
-			//		new Repairman();
+				case 2:
+					new Repairman();
 				}
 			}
 			
@@ -71,7 +73,7 @@ public class Program{
 				if (rnd<rnds-1)
 					Thread.sleep(timeout[rnd]*1000);
 			} catch (InterruptedException e) {}
-			System.out.println("============= BLOCK "+rnd+" FINISH ============");
+			System.out.println("============= BLOCK "+(rnd+1)+" FINISH ============");
 		}
 		
 	}

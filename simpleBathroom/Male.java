@@ -11,7 +11,7 @@ public class Male extends Person{
 	public void entryProtocol() throws InterruptedException{
 		Program.firstM.acquire();
 		
-		//provera uslova da li je njena grupa
+		//provera uslova da li je njegova grupa
 		Program.mutex.acquire();
 		if (Program.cntF>0 || Program.cntR>0){
 			Program.waitM++;
@@ -60,8 +60,8 @@ public class Male extends Person{
 			if (Program.childTurn) Program.childTurn = true;
 		}
 		
-		//ako je poslednji
-		if ((Program.cntM == 0)&&(Program.waitF>0||Program.waitR>0)){
+		//ako je poslednji i niko od njegovih ne ceka pusti drugu grupu ako neko ceka tamo
+		if ((Program.cntM == 0)&&(Program.waitM == 0)&&(Program.waitF>0||Program.waitR>0)){
 			Program.groupA.release();
 		}
 		Program.mutex.release();
